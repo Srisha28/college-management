@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Management System</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f6fc;
+    color: #183153;
+}
+
+header {
+    background: #1456a0;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+
+nav {
+    background: white;
+    padding: 12px;
+    text-align: center;
+}
+
+nav button {
+    background: #1456a0;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    margin: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #0b3970;
+}
+
+.container {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+h2 {
+    color: #1456a0;
+}
+
+input, select {
+    width: 100%;
+    padding: 11px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.action {
+    background: #1456a0;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #1456a0;
+    color: white;
+}
+
+footer {
+    background: #1456a0;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    nav button {
+        width: 95%;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>ABC College</h1>
+    <p>College Management System</p>
+</header>
+
+<nav id="navbar">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('login')">Login</button>
+    <button onclick="showPage('events')">Events & Notices</button>
+</nav>
+
+<div class="container">
+
+<!-- HOME PAGE -->
+<section id="home">
+    <div class="card">
+        <h2>Welcome to ABC College</h2>
+        <p>
+            ABC College provides quality education and
+            develops students' knowledge and skills.
+        </p>
+
+        <h3>Our Courses</h3>
+        <ul>
+            <li>Computer Science</li>
+            <li>Information Technology</li>
+            <li>Business Administration</li>
+            <li>Electronics Engineering</li>
+        </ul>
+
+        <h3>Campus Life</h3>
+        <img
+        src="https://images.unsplash.com/photo-1562774053-701939374585?w=900"
+        alt="College Campus"
+        style="width:100%;border-radius:8px">
+
+        <p>Learn, Grow and Achieve Your Dreams!</p>
+    </div>
+</section>
+
+<!-- LOGIN PAGE -->
+<section id="login" class="hidden">
+    <div class="card">
+        <h2>Login Portal</h2>
+
+        <label>Select Role</label>
+        <select id="role">
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+        <label>Username</label>
+        <input type="text" id="username"
+        placeholder="Enter username">
+
+        <label>Password</label>
+        <input type="password" id="password"
+        placeholder="Enter password">
+
+        <button class="action" onclick="login()">
+            Login
+        </button>
+
+        <p id="message"></p>
+
+        <hr>
+
+        <p><b>Demo Login Details</b></p>
+        <p>Student: student01 / demo123</p>
+        <p>Faculty: faculty01 / demo123</p>
+        <p>Admin: admin / admin123</p>
+    </div>
+</section>
+
+<!-- STUDENT DASHBOARD -->
+<section id="student" class="hidden">
+    <div class="card">
+        <h2>Student Dashboard</h2>
+        <p>Welcome, Student!</p>
+        <h3>Student Details</h3>
+        <p>Student ID: STU1001</p>
+        <p>Department: Computer Science</p>
+        <p>Year: Second Year</p>
+    </div>
+
+    <div class="card">
+        <h2>Attendance</h2>
+        <p>Overall Attendance: 86%</p>
+    </div>
+
+    <div class="card">
+        <h2>Marks</h2>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Java Programming</td>
+                <td>88</td>
+            </tr>
+            <tr>
+                <td>Mathematics</td>
+                <td>81</td>
+            </tr>
+            <tr>
+                <td>Database Management</td>
+                <td>90</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Timetable</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Subject</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>Java</td>
+                <td>9 AM</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>Mathematics</td>
+                <td>10 AM</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>DBMS</td>
+                <td>11 AM</td>
+            </tr>
+        </table>
+    </div>
+
+    <button class="action" onclick="logout()">Logout</button>
+</section>
+
+<!-- FACULTY DASHBOARD -->
+<section id="faculty" class="hidden">
+    <div class="card">
+        <h2>Faculty Dashboard</h2>
+        <p>Welcome, Faculty!</p>
+
+        <h3>Mark Attendance</h3>
+
+        <input id="studentId"
+        placeholder="Enter Student ID">
+
+        <select id="attendance">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+
+        <button class="action"
+        onclick="markAttendance()">
+            Submit Attendance
+        </button>
+
+        <p id="attendanceMessage"></p>
+    </div>
+
+    <div class="card">
+        <h2>Upload Marks</h2>
+
+        <input id="markId"
+        placeholder="Enter Student ID">
+
+        <input id="subject"
+        placeholder="Enter Subject">
+
+        <input id="marks"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="Enter Marks">
+
+        <button class="action" onclick="uploadMarks()">
+            Upload Marks
+        </button>
+
+        <p id="marksMessage"></p>
+    </div>
+
+    <button class="action" onclick="logout()">Logout</button>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="admin" class="hidden">
+    <div class="card">
+        <h2>Admin Panel</h2>
+        <p>Welcome, Administrator!</p>
+
+        <h3>Add Student</h3>
+
+        <input id="newStudentId"
+        placeholder="Student ID">
+
+        <input id="newStudentName"
+        placeholder="Student Name">
+
+        <input id="newStudentCourse"
+        placeholder="Course Name">
+
+        <button class="action" onclick="addStudent()">
+            Add Student
+        </button>
+
+        <h3>Student Records</h3>
+
+        <div style="overflow-x:auto">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+
+                <tbody id="studentList">
+                    <tr>
+                        <td>STU1001</td>
+                        <td>Aarav</td>
+                        <td>Computer Science</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Add Faculty</h2>
+
+        <input id="facultyName"
+        placeholder="Faculty Name">
+
+        <input id="facultyDepartment"
+        placeholder="Department">
+
+        <button class="action" onclick="addFaculty()">
+            Add Faculty
+        </button>
+
+        <ul id="facultyList"></ul>
+    </div>
+
+    <div class="card">
+        <h2>Add Course</h2>
+
+        <input id="courseName"
+        placeholder="Course Name">
+
+        <button class="action" onclick="addCourse()">
+            Add Course
+        </button>
+
+        <ul id="courseList"></ul>
+    </div>
+
+    <button class="action" onclick="logout()">Logout</button>
+</section>
+
+<!-- EVENTS AND NOTICES -->
+<section id="events" class="hidden">
+    <div class="card">
+        <h2>Events & Notices</h2>
+
+        <h3>📢 Examination Notice</h3>
+        <p>Semester examination schedule will be announced soon.</p>
+
+        <h3>🎉 Annual Cultural Fest</h3>
+        <p>Students are invited to participate in the cultural fest.</p>
+
+        <h3>📚 Library Notice</h3>
+        <p>Students can use the library for exam preparation.</p>
+    </div>
+</section>
+
+</div>
+
+<footer>
+    <p>© 2026 ABC College | College Management System</p>
+</footer>
+
+<script>
+function showPage(page) {
+    let pages = [
+        "home", "login", "events",
+        "student", "faculty", "admin"
+    ];
+
+    pages.forEach(function(id) {
+        document.getElementById(id)
+        .classList.add("hidden");
+    });
+
+    document.getElementById(page)
+    .classList.remove("hidden");
+}
+
+function login() {
+    let role = document.getElementById("role").value;
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value;
+
+    let valid = false;
+
+    if (role === "Student" &&
+        user === "student01" && pass === "demo123") {
+        valid = true;
+        showPage("student");
+    }
+    else if (role === "Faculty" &&
+        user === "faculty01" && pass === "demo123") {
+        valid = true;
+        showPage("faculty");
+    }
+    else if (role === "Admin" &&
+        user === "admin" && pass === "admin123") {
+        valid = true;
+        showPage("admin");
+    }
+
+    if (!valid) {
+        document.getElementById("message").innerText =
+        "Invalid username or password!";
+    }
+}
+
+function logout() {
+    showPage("home");
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+}
+
+function markAttendance() {
+    let id = document.getElementById("studentId").value;
+    let attendance = document.getElementById("attendance").value;
+
+    if (id.trim() === "") {
+        alert("Enter Student ID");
+        return;
+    }
+
+    document.getElementById("attendanceMessage").innerText =
+        "Attendance for " + id + ": " + attendance;
+}
+
+function uploadMarks() {
+    let id = document.getElementById("markId").value;
+    let subject = document.getElementById("subject").value;
+    let marks = document.getElementById("marks").value;
+
+    if (id.trim() === "" || subject.trim() === "" ||
+        marks === "" || Number(marks) < 0 ||
+        Number(marks) > 100) {
+        alert("Enter valid student ID, subject and marks (0-100)");
+        return;
+    }
+
+    document.getElementById("marksMessage").innerText =
+        "Marks uploaded: " + id + " - " +
+        subject + " - " + marks + "/100";
+}
+
+function addStudent() {
+    let id = document.getElementById("newStudentId").value.trim();
+    let name = document.getElementById("newStudentName").value.trim();
+    let course = document.getElementById("newStudentCourse").value.trim();
+
+    if (!id || !name || !course) {
+        alert("Fill all student details");
+        return;
+    }
+
+    let row = document.createElement("tr");
+
+    [id, name, course].forEach(function(value) {
+        let cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+    });
+
+    document.getElementById("studentList").appendChild(row);
+
+    document.getElementById("newStudentId").value = "";
+    document.getElementById("newStudentName").value = "";
+    document.getElementById("newStudentCourse").value = "";
+}
+
+function addFaculty() {
+    let name = document.getElementById("facultyName").value.trim();
+    let dept = document.getElementById("facultyDepartment").value.trim();
+
+    if (!name || !dept) {
+        alert("Enter faculty name and department");
+        return;
+    }
+
+    let li = document.createElement("li");
+    li.textContent = name + " - " + dept;
+
+    document.getElementById("facultyList").appendChild(li);
+
+    document.getElementById("facultyName").value = "";
+    document.getElementById("facultyDepartment").value = "";
+}
+
+function addCourse() {
+    let course = document.getElementById("courseName").value.trim();
+
+    if (!course) {
+        alert("Enter course name");
+        return;
+    }
+
+    let li = document.createElement("li");
+    li.textContent = course;
+
+    document.getElementById("courseList").appendChild(li);
+    document.getElementById("courseName").value = "";
+}
+</script>
+
+</body>
+</html>
